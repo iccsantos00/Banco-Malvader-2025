@@ -1,0 +1,18 @@
+# Ignorar arquivos do Java/Maven
+target/
+*.class
+.idea/
+*.iml
+.mvn/
+mvnw
+mvnw.cmd
+
+# Ignorar arquivos do Node/React
+node_modules/
+dist/
+build/
+.env
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db

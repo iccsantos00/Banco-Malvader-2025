@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: BancoMalvader
+  datasource:
+    url: jdbc:mysql://localhost:3306/banco_malvader?useSSL=false&serverTimezone=UTC
+    username: banco_user
+    password: banco123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        show_sql: true
+        jdbc:
+          time_zone: America/Sao_Paulo
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:default}
+            client-secret: ${GOOGLE_CLIENT_SECRET:default}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+
+logging:
+  level:
+    com.BancoFinanceiro.BancoMalvader: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: DEBUG
+  file:
+    name: logs/banco-malvader.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
+
+app:
+  security:
+    jwt-secret: bancoMalvaderSecretKey2024SecureForProductionChangeThis
+    jwt-expiration-ms: 86400000
+    mfa-issuer: BancoMalvader
+    max-login-attempts: 3
+    transaction-password-length: 6
+    max-transaction-attempts: 3
+    password-min-length: 8
+    password-max-length: 12
+    token-length: 15
+    recovery-token-length: 15
+  relatorios:
+    diretorio: ./relatorios/
+    retencao-dias: 30
